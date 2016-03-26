@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dominion</title>
+		<link rel="stylesheet" href="{{ static_url("css/dominion.css") }}">
+	</head>
+	<body>
+		<div id="game_interface">
+			<div id="upper_display">
+				<div id="supply_box">
+					<fieldset>
+						<legend>Supply Piles</legend>
+						<div class="supply_row"></div>
+						<div class="supply_row"></div>
+					</fieldset>
+				</div>
+				<div id="log_box">
+					<fieldset>
+						<legend>Log</legend>
+						<div id="log"></div>
+					</fieldset>
+				</div>
+				<div id="chat_box">
+					<form autocomplete="off">
+						<input type="text" placeholder="Type a message...">
+					</form>
+				</div>
+			</div>
+			<div id="middle_display">
+				<div id="curses_and_trash">
+					<div id="curses" class="tiny_fig">
+						<figure></figure>
+					</div>
+					<div id="trash" class="tiny_fig">
+						<figure></figure>
+					</div>
+				</div>
+				<div id="middle_forms">
+					<div id="decision_form">
+						<form>
+							<fieldset style="text-align: center;">
+								<legend>Choose</legend>
+								<span></span>
+								<div class="decision_buttons">
+									<input type="submit" value="Yes" style="margin-right: 10px;">
+									<input type="submit" value="No" style="margin-left: 10px;">
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					<div id="end_game_form">
+						<form method="" action="">
+							<fieldset style="text-align: center;">
+								<legend>Final Score</legend>
+								<span></span>
+								<div class="decision_buttons">
+									<input type="submit" value="Play Again" style="margin-right: 10px;">
+									<input type="submit" value="Leave" style="margin-left: 10px;">
+								</div>
+								<input type="text" name="name" style="display:none;"/>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+				<div id="stats_and_piles">
+					<div id="stats_box">
+						<fieldset>
+							<legend>Stats</legend>
+							<span id="stats"></span>
+						</fieldset>
+					</div>
+					<div id="deck_and_discard">
+						<div id="discard" class="tiny_fig">
+							<figure></figure>
+						</div>
+						<div id="deck" class="tiny_fig">
+							<figure></figure>
+						</div>
+					</div>
+				</div>
+				<div id="buttons">
+					<input type="submit" value="End Turn" id="end_button" />
+					<input type="submit" value="Play All Treasures" id="play_all_button" />
+					<input type="submit" value="Done Selecting" id="done_button" />
+				</div>
+			</div>
+			<div id="bottom_display">
+				<div id="hand_box">
+					<fieldset>
+						<legend>Hand</legend>
+						<div id="hand"></div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div id="waiting_interface">
+			<form action="/dominion" method="post">
+				<fieldset style="text-align: center">
+					<legend>Waiting for players...</legend>
+					<div style="padding-top: 20px">
+						<span id="connections"></span>
+					</div>
+					<div class="decision_buttons">
+						<input type="submit" value="Play Now!" id="play_button" style="display: none;"/>
+					</div>
+				</fieldset>
+			</form>
+			<span id="username" style="display: none;">{{ name }}</span>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/sockjs/0.3/sockjs.min.js"></script>
+		<script src="{{ static_url("js/dominion.js") }}"></script>
+	</body>
+</html>

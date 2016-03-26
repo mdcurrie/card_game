@@ -1,0 +1,49 @@
+@font-face {
+	font-family: 'Quicksand';
+	src: url('/static/fonts/Quicksand-Regular.otf');}
+@font-face {
+	font-family: 'QuicksandBold';
+	src: url('/static/fonts/Quicksand-Bold.otf');}
+* {
+	font-family: Quicksand, Geneva, sans-serif;
+	color: #665544;}
+div#container {
+	position: absolute;
+	display: none;
+	top: 30%;
+	right: 50%;
+	transform: translate(50%, 0);
+	width: 20%;}
+fieldset {
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	text-align: center;}
+legend {
+	font-family: QuicksandBold, Geneva, sans-serif;
+	background-color: #efefef;
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: left;}
+div#error_message {
+	font-size: 70%;}
+input {
+	border: none;
+	margin: 10px;}
+input[type="text"] {
+	border-bottom: 1px dotted #dcdcdc;
+	padding: 5px;
+	width: 90%;}
+input[type="text"]:focus {
+	border: 1px dotted #dcdcdc;
+	outline: none;}
+input[type="submit"] {
+	color: #ffffff;
+	background-color: #665544;
+	border: none;
+	border-radius: 5px;
+	min-width: 33%;
+	padding: 10px;}
+input[type="submit"]:hover {
+	color: #665544;
+	background-color: #efefef;}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" href="{{ static_url("css/login.css") }}">
+	</head>
+	<body>
+		<div id="container">
+			<form action="/" method="post">
+				<fieldset>
+					<legend>Play Dominion</legend>
+					<input type="text" name="name" placeholder="Enter a name..." maxlength="20"/>
+					<div id="error_message">{{ error }}</div>
+					<input type="submit" value="Connect!"/>
+				</fieldset>
+			</form>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/sockjs/0.3/sockjs.min.js"></script>
+		<script src="{{ static_url("js/login.js") }}"></script>
+	</body>
+</html>
