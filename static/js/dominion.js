@@ -46,7 +46,7 @@ $(function() {
 							$('.supply_row').eq(0).append('<figure></figure>');
 						else
 							$('.supply_row').eq(1).append('<figure></figure>');
-						$(new Image()).attr('src', '/static/images/' + supply[i] + '.jpg').height('calc(100% - 20px)').appendTo($('.supply_row > figure:last'));
+						$(new Image()).attr('src', '/static/images/' + supply[i] + '.jpg').css({'maxHeight': 'calc(100% - 2em)', 'maxWidth': '100%'}).appendTo($('.supply_row > figure:last'));
 					}
 					else {
 						$('.supply_row > figure:last').append('<figcaption>' + supply[i] + '</figcaption>');
@@ -62,7 +62,7 @@ $(function() {
 
 			case 'Curses':
 				$('#curses > figure').html('');
-				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').height('calc(100% - 20px)').appendTo($('#curses > figure'));
+				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').css({'maxHeight': 'calc(100% - 2em)', 'maxWidth': '100%'}).appendTo($('#curses > figure'));
 				$('#curses > figure').append('<figcaption>' + info.split(',')[1] + '</figcaption>');
 
 				$('#curses img').off('click');
@@ -75,7 +75,7 @@ $(function() {
 
 			case 'Trash':
 				$('#trash > figure').html('');
-				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').height('calc(100% - 20px)').appendTo($('#trash > figure'));
+				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').css({'maxHeight': 'calc(100% - 2em)', 'maxWidth': '100%'}).appendTo($('#trash > figure'));
 				$('#trash > figure').append('<figcaption>' + info.split(',')[1] + '</figcaption>');
 
 				$('#trash img').off('click');
@@ -135,13 +135,13 @@ $(function() {
 
 			case 'Deck':
 				$('#deck > figure').html('');
-				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').height('calc(100% - 20px)').appendTo($('#deck > figure'));
+				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').css({'maxHeight': 'calc(100% - 2em)', 'maxWidth': '100%'}).appendTo($('#deck > figure'));
 				$('#deck > figure').append('<figcaption>' + info.split(',')[1] + '</figcaption>');
 				break;
 
 			case 'Discard':
 				$('#discard > figure').html('');
-				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').height('calc(100% - 20px)').appendTo($('#discard > figure'));
+				$(new Image()).attr('src', '/static/images/' + info.split(',')[0] + '.jpg').css({'maxHeight': 'calc(100% - 2em)', 'maxWidth': '100%'}).appendTo($('#discard > figure'));
 				$('#discard > figure').append('<figcaption>' + info.split(',')[1] + '</figcaption>');
 				break;
 
@@ -252,6 +252,8 @@ $(function() {
 									$(this).addClass('img_selected');
 							});
 
+							$('#end_button').hide();
+							$('#play_all_button').hide();
 							$('#done_button').fadeIn(400);
 							$('#done_button').on('click', function() {
 								var resp = '';
@@ -264,7 +266,9 @@ $(function() {
 									}
 								}
 								conn.send($('#username').text() + ':Play Card:' + resp);
-								$('#done_button').fadeOut(400);
+								$('#done_button').hide();
+								$('#end_button').fadeIn(400);
+								$('#play_all_button').fadeIn(400);
 								$('#done_button').off('click');
 								$('#play_all_button').on('click', play_all_handler)
 								$('#end_button').on('click', end_handler);
@@ -339,6 +343,8 @@ $(function() {
 									$(this).addClass('img_selected');
 							});
 
+							$('#end_button').hide();
+							$('#play_all_button').hide();
 							$('#done_button').fadeIn(400);
 							$('#done_button').on('click', function() {
 								var resp = '';
@@ -352,7 +358,9 @@ $(function() {
 								}
 								conn.send($('#username').text() + ':Play Card:' + resp);
 								$('#done_button').off('click');
-								$('#done_button').fadeOut(400);
+								$('#done_button').hide();
+								$('#end_button').fadeIn(400);
+								$('#play_all_button').fadeIn(400);
 								$('#play_all_button').on('click', play_all_handler)
 								$('#end_button').on('click', end_handler);
 							});
