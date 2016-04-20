@@ -1,4 +1,3 @@
-import os.path
 import os
 import tornado.httpserver
 import tornado.ioloop
@@ -10,13 +9,15 @@ import dominion
 from tornado.options import define, options
 define("port", default=8000, help="run on the given port", type=int)
 
+# handles GET and POST requests
 class IndexHandler(tornado.web.RequestHandler):
 	def get(self):
 		self.render('index.html', error='')
 
 	def post(self):
 		name = self.get_argument('name')
-
+		# return to previous page if a game is already in progress, the maximum player count has been reached,
+		# or the specified username is already being used by another player
 		if GameConnection.game != None:
 			self.render('index.html', error='A match is already in progress, please try again later.')
 		elif len(GameConnection.participants) >= 4:
@@ -26,6 +27,7 @@ class IndexHandler(tornado.web.RequestHandler):
 		else:
 			self.render('dominion.html', name=name)
 
+# handles websocket connection between the server and clients
 class GameConnection(sockjs.tornado.SockJSConnection):
 	participants = []
 	names = []
@@ -36,6 +38,8 @@ class GameConnection(sockjs.tornado.SockJSConnection):
 		cls = GameConnection
 		cls.participants.append(self)
 
+	# messages are parsed from clients
+	# each message sent from the client to the server is in the format '<command>:<info>'
 	def on_message(self, message):
 		cls     = GameConnection
 		command = message.split(':')[0]
@@ -55,6 +59,8 @@ class GameConnection(sockjs.tornado.SockJSConnection):
 			else:
 				self.send('Public:Cards in trash are ' + ', '.join([card.name for card in cls.game._trash]) + '.')
 
+		# once a game is started, an instance of the dominion class is created
+		# all relevant information is presented to each player
 		elif command == 'Start':
 			self.broadcast(cls.participants, 'Start: (blank)')
 			cls.game = dominion.Dominion(cls.names)
@@ -96,6 +102,7 @@ class GameConnection(sockjs.tornado.SockJSConnection):
 			cls.game = None
 		self.broadcast(cls.participants, 'Leave:{} has left the game.'.format(rage_quitter))
 
+	# various functions that grab infomation from the dominion class and sends it to client
 	def display_supply(self):
 		cls = GameConnection
 		self.broadcast(cls.participants, 'Supply:' + cls.game.supply_string())
@@ -141,7 +148,3 @@ if __name__ == '__main__':
 
 	app.listen(int(os.environ.get('PORT', 8000)))
 	tornado.ioloop.IOLoop.instance().start()
-
-	#KNOWN BUGS:
-	# 1. clean up HTML/CSS/JS (maybe?)
-	
