@@ -13,7 +13,8 @@ div#container {
 	top: 30%;
 	right: 50%;
 	transform: translate(50%, 0);
-	width: 20%;
+	width: 20%;}
+div span {
 	font-size: 70%;}
 fieldset {
 	border: 1px solid #dcdcdc;
