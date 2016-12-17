@@ -339,7 +339,7 @@ class Dominion:
 					self.info_list.append('Public:{} blocked the attack using Moat.'.format(others.name))
 					continue
 				for idx, card in enumerate(others):
-					if card.name in {'Estate', 'Duchy', 'Province'}:
+					if card.name in {'Estate', 'Duchy', 'Province', 'Gardens'}:
 						removed_victory = others.remove_card('hand', idx)
 						others.add_cards('deck', removed_victory)
 						self.info_list.append('Public:{} placed {} on top of his deck.'.format(others.name, card.name))
