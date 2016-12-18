@@ -674,7 +674,7 @@ class Dominion:
 						self.info_list.append('Public:{} set {} aside.'.format(current_player.name, removed_card.name))
 					else:
 						current_player.add_cards('hand', removed_card)
-						self.info_list.append('Public:{} did not set {} aside'.format(current_player.name, removed_card.name))
+						self.info_list.append('Public:{} did not set {} aside.'.format(current_player.name, removed_card.name))
 				else:
 					current_player.add_cards('hand', removed_card)
 			if set_aside != []:
