@@ -128,7 +128,11 @@ class Dominion:
 		shuffle(randomizers)
 		for pile_num in range(10):
 			pile = cards.Cards()
-			pile.add_cards([copy(randomizers[pile_num]) for amount in range(10)])
+			if randomizers[pile_num].name == 'Gardens':
+				card_copies = [copy(randomizers[pile_num]) for amount in range(8)]
+			else:
+				card_copies = [copy(randomizers[pile_num]) for amount in range(10)]
+			pile.add_cards(card_copies)
 			self._kingdoms.append(pile)
 
 	def game_loop(self):
