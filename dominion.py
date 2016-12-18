@@ -129,7 +129,10 @@ class Dominion:
 		for pile_num in range(10):
 			pile = cards.Cards()
 			if randomizers[pile_num].name == 'Gardens':
-				card_copies = [copy(randomizers[pile_num]) for amount in range(8)]
+				if len(self._players) == 2:
+					card_copies = [copy(randomizers[pile_num]) for amount in range(8)]
+				else:
+					card_copies = [copy(randomizers[pile_num]) for amount in range(12)]
 			else:
 				card_copies = [copy(randomizers[pile_num]) for amount in range(10)]
 			pile.add_cards(card_copies)
