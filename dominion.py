@@ -34,6 +34,8 @@ class Dominion:
 		curse_amount = {2: 10, 3: 20, 4: 30}
 		for amount in range(curse_amount[player_count]):
 			self._curses.add_cards(cards.Card('Curse', 'Curse', 0))
+			
+		self.info_list.append("-- Starting game between " + ', '.join([self._players]) + " --")
 
 	def __getitem__(self, index):
 		# allows indexing to be performed on the class
