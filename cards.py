@@ -1,5 +1,5 @@
 import sys
-from random import shuffle
+from random import shuffle, SystemRandom
 from collections import namedtuple
 
 Card = namedtuple('Card', 'name type cost')
@@ -57,7 +57,7 @@ class Cards:
 
 	def shuffle(self):
 		# shuffle the list to randomize order of cards
-		shuffle(self._cards)
+		shuffle(self._cards, SystemRandom().random)
 
 	def add_cards(self, cards_to_add):
 		# add cards to list
